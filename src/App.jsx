@@ -4,21 +4,10 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { Card, CardContent, CardHeader } from '@mui/material';
+import { calcSL, calcTarget, calcFixedSL } from './util/Formula';
 
-function calcSL(price, atr, multiplier) {
-  return price - (atr * multiplier);
-}
-
-function calcTarget(price, sl, ratio = 1.5) {
-  return price + sl * ratio;
-}
-
-function calcFixedSL(price, pct = 0.2) {
-  return price * pct;
-}
 
 function Calculator() {
   const [stockPrice, setStockPrice] = useState(116);
@@ -27,10 +16,10 @@ function Calculator() {
   const [dailyAtr, setDailyAtr] = useState(45.52);
 
   const sl1_5 = calcSL(stockPrice, dailyAtr, 1.5);
-  const tgt1_5 = calcTarget(stockPrice, sl1_5);
+  const tgt1_5 = calcTarget(stockPrice, dailyAtr, 1.5);
 
   const sl1_0 = calcSL(stockPrice, dailyAtr, 1.0);
-  const tgt1_0 = calcTarget(stockPrice, sl1_0, 2.05);
+  const tgt1_0 = calcTarget(stockPrice, dailyAtr, 1.0);
 
   const slFixed = calcFixedSL(stockPrice, 0.2);
   const tgtFixed = stockPrice * 1.2;
