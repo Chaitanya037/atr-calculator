@@ -1,13 +1,11 @@
-// App.jsx
-import React, { useState } from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import { Card, CardContent, CardHeader } from '@mui/material';
-import { calcSL, calcTarget, calcFixedSL } from './util/Formula';
-
+import React, { useState } from "react";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import { Card, CardContent, CardHeader } from "@mui/material";
+import { calcSL, calcTarget, calcFixedSL } from "./util/Formula";
 
 function Calculator() {
   const [stockPrice, setStockPrice] = useState(116);
@@ -25,17 +23,45 @@ function Calculator() {
   const tgtFixed = stockPrice * 1.2;
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="xl" sx={{ mt:3, boxSizing: "unset" }}>
       <Grid container spacing={2}>
-        <Grid item xs={6}><TextField label="Stock Price" fullWidth value={stockPrice} onChange={e => setStockPrice(+e.target.value)} /></Grid>
-        <Grid item xs={6}><TextField label="15 Min ATR" fullWidth value={atr15} onChange={e => setAtr15(+e.target.value)} /></Grid>
-        <Grid item xs={6}><TextField label="1 Hr ATR" fullWidth value={atr1hr} onChange={e => setAtr1hr(+e.target.value)} /></Grid>
-        <Grid item xs={6}><TextField label="Daily ATR" fullWidth value={dailyAtr} onChange={e => setDailyAtr(+e.target.value)} /></Grid>
+        <Grid size={3}>
+          <TextField
+            label="Stock Price"
+            fullWidth
+            value={stockPrice}
+            onChange={(e) => setStockPrice(+e.target.value)}
+          />
+        </Grid>
+        <Grid size={3}>
+          <TextField
+            label="15 Min ATR"
+            fullWidth
+            value={atr15}
+            onChange={(e) => setAtr15(+e.target.value)}
+          />
+        </Grid>
+        <Grid size={3}>
+          <TextField
+            label="1 Hr ATR"
+            fullWidth
+            value={atr1hr}
+            onChange={(e) => setAtr1hr(+e.target.value)}
+          />
+        </Grid>
+        <Grid size={3}>
+          <TextField
+            label="Daily ATR"
+            fullWidth
+            value={dailyAtr}
+            onChange={(e) => setDailyAtr(+e.target.value)}
+          />
+        </Grid>
       </Grid>
 
       <Box mt={4}>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
+          <Grid size={4}>
             <Card>
               <CardHeader title="1.5x Multiplier" />
               <CardContent>
@@ -44,7 +70,7 @@ function Calculator() {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid size={4}>
             <Card>
               <CardHeader title="1.0x Multiplier" />
               <CardContent>
@@ -53,7 +79,7 @@ function Calculator() {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid size={4}>
             <Card>
               <CardHeader title="20% Fixed" />
               <CardContent>
@@ -70,8 +96,13 @@ function Calculator() {
 
 export default function App() {
   return (
-    <Container maxWidth="md" sx={{ mt: 4, bgcolor: '#fff' }}>
-      <Typography variant="h4" align="center" gutterBottom sx={{ color: '#000'}}>
+    <Container maxWidth="md" sx={{ mt: 4, bgcolor: "#fff" }}>
+      <Typography
+        variant="h4"
+        align="center"
+        gutterBottom
+        sx={{ color: "#000" }}
+      >
         ATR-Based Option Strategy Calculator
       </Typography>
       <Calculator />
